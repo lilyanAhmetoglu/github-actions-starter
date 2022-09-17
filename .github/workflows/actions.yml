@@ -6,10 +6,16 @@ jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Simple Js Action
+      - name: Checkout # action
+        uses: actions/checkout@v1
+      - name: List Files After Checkout #shell command
+        run: |
+          pwd
+          ls -a
+      - name: Simple Js Action #action
         id: greet
         uses: actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b # it is better not to use branch name so even version or commit id for major break throughs
         with: 
           who-to-greet: Lilyan
-      - name: Log Greeting time
+      - name: Log Greeting time  #shell command
         run: echo "${{ steps.greet.outputs.time }}"
