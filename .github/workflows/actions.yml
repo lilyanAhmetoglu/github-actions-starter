@@ -6,8 +6,8 @@ jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout # action
-        uses: actions/checkout@v1
+      - name: Checkout # action / the checkout action is very useful for getting the project files and allows us to run test or build for those files
+        uses: actions/checkout@v3 # run git fetch and git checkout
       - name: List Files After Checkout #shell command
         run: |
           pwd
