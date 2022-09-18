@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   run-shell-command:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # we can use any kind of VM
     steps:
       - name: echo a string
         run: echo "Hello World"
