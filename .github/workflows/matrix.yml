@@ -10,7 +10,7 @@ jobs:
         node_version: [6,8,10] 
         exclude: #now the jobs will run 7 time while we exclude 2 combination
           - os: ubuntu-latest
-            node-version: 6
+            node_version: 6
           - os: macos-latest
             node_version: 8
       fail-fast: true #all the test cases are dependent on each other so if one of them fails it will stop the others
