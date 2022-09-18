@@ -1,0 +1,17 @@
+name: Matrix
+
+on: push
+
+jobs:
+  node-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log node node version 
+        run: node -v
+      - uses: actions/setup-node@v3 #changing the node version on VM
+        with:
+          node-version: 8
+      - name: Log new node version
+        run: node -v
+
+        
