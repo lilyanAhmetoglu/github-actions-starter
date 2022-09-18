@@ -3,7 +3,7 @@ name: Actions Workflow
 on:
   push:
     branches: # we can use this to filter the branches we want perform this workflow when we push (like deployment for example we want to deploy only when we push to master)
-      - master
+      #- main
       - 'feature/*' # matches feature/featureA , feature/featureB doesn't match feature/feature/a
       - 'feature/**' #matches matches feature/featureA , feature/featureB and feature/feature/a
       - '!feature/featC' #ignore this spcific branch when push to
