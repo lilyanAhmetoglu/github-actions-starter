@@ -8,6 +8,11 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest] #run over different VM so 3x3 the job will run 9 times
         node_version: [6,8,10] 
+        exclude: #now the jobs will run 7 time while we exclude 2 combination
+          - os: ubuntu-latest
+            node-version: 6
+          - os: macos-latest
+            node_version: 8
       fail-fast: true #all the test cases are dependent on each other so if one of them fails it will stop the others
       max-parallel: 2 # limit the number of parrellel job that run at the same time
     runs-on: ${{ matrix.os }}
