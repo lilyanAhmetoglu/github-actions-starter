@@ -2,6 +2,17 @@ name: Actions Workflow
 
 on:
   push:
+    branches: # we can use this to filter the branches we want perform this workflow when we push (like deployment for example we want to deploy only when we push to master)
+      - master
+      - 'feature/*' # matches feature/featureA , feature/featureB doesn't match feature/feature/a
+      - 'feature/**' #matches matches feature/featureA , feature/featureB and feature/feature/a
+      - '!feature/featC' #ignore this spcific branch when push to
+    tags:
+      - v1.* # when pushing to specific version
+    paths:
+      - '**.js' # when changing any js file
+  #schedule: # running the workflow on specific time
+   # - cron: "* * * * *" #any value min hour day(month) month day(week)
   pull_request:
     types:
       - closed
