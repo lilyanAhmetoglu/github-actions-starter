@@ -5,10 +5,20 @@ on: push
 jobs:
   node-docker:
     runs-on: ubuntu-latest
-    container: #if we add the container so any step we will execute it will run over this container not inside the VM directly
-      image: node:18-alpine3.15
+    #container: #if we add the container so any step we will execute it will run over this container not inside the VM directly
+    # id u have multiple container needs to be run like server and db we need to use service
+     # image: node:18-alpine3.15
+    services: # running different docker contaienrs at the same time similer to docker compose
+      app:
+        image: alialaa17/node-api # simple api application
+        ports:
+          - 3001:3000 #running on 3001 outside docker and on 3000 inside docker
+      mongo:
+        image: mongo #official image for mongo
+        ports:
+          - "27017:27017"
     steps:
-      - name: Log node version
-        run: |
-          node -v 
-          cat /etc/os-release
+      - name: Post a user #execute the request inside VM and outside docker
+        run: 'curl -X POST http://localhost:3001/api/user -H ''Content-Type: application/json'' -d ''{"username": "hello","address": "dwded"}'''
+      - name: Get Users
+        run: curl http://localhost:3001/api/users
