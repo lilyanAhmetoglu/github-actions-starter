@@ -14,7 +14,7 @@ jobs:
         ports:
           - 3001:3000 #running on 3001 outside docker and on 3000 inside docker
       mongo:
-        image: mongo #official image for mongo
+        image: mongo #official image for mongo inside the application we need to set the connection string url to mongo instead of localhost in order to make the two container connect to each other 
         ports:
           - "27017:27017"
     steps:
