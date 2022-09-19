@@ -4,26 +4,31 @@ on: push
 
 jobs:
   node-version:
-    strategy: #running jobs in different parameters each time
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest] #run over different VM so 3x3 the job will run 9 times
-        node_version: [6,8,10] 
-        exclude: #now the jobs will run 7 time while we exclude 2 combination
-          - os: ubuntu-latest
-            node_version: 6
-          - os: macos-latest
-            node_version: 8
-            check-latest: true
-      fail-fast: true #all the test cases are dependent on each other so if one of them fails it will stop the others
-      max-parallel: 2 # limit the number of parrellel job that run at the same time
-    runs-on: ${{ matrix.os }}
+    #strategy: #running jobs in different parameters each time
+     # matrix:
+        #os: [macos-latest, ubuntu-latest, windows-latest] #run over different VM so 3x3 the job will run 9 times
+        #node_version: [6,8,10] 
+        #exclude: #now the jobs will run 7 time while we exclude 2 combination
+          #- os: ubuntu-latest
+          #  node_version: 6
+         # - os: macos-latest
+          #  node_version: 8
+          #  check-latest: true
+      #fail-fast: true #all the test cases are dependent on each other so if one of them fails it will stop the others
+      #max-parallel: 2 # limit the number of parrellel job that run at the same time
+    runs-on: ubuntu-latest
     steps:
-      - name: Log node node version 
-        run: node -v
-      - uses: actions/setup-node@v3 #changing the node version on VM
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node_version}} # like mapping the 3 values
-      - name: Log new node version
-        run: node -v
+          node-version: '16'
+          check-latest: true
+    #steps:
+   #   - name: Log node version 
+    #    run: node -v
+     # - uses: actions/setup-node@v3 #changing the node version on VM
+     #   with:
+     #     node-version: ${{ matrix.node_version}} # like mapping the 3 values
+     # - name: Log new node version
+      #  run: node -v
 
         
